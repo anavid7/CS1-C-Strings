@@ -4,13 +4,47 @@
 
 #include "gameFunctions.h"
 
-initializeBlankString() {}
+void initializeBlankString(int length, char *str) {
+  int i;
+  for (i=0; i<length; i++) {
+    str[i] = '_';
+  }
+  str[i] = '\0';
+}
 
-printWithSpaces() {}
+void printWithSpaces(char *str) {
+  int length = strlen(str);
+  int i;
+  for (i=0; i<length; i++) {
+    printf("%c ", str[i]);
+  }
+}
 
-revealGuessedLetter() {}
+int revealGuessedLetter(char *answer, char *guess, char probe) {
+  int length = strlen(answer);
+  int i;
+  int x = 0;
+    for (i=0; i<length; i++) {
+      if (answer[i] == probe) {
+        guess[i] = probe;
+        x = 1;
+      }
+    }
+    if (x == 0) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
 
-checkGuess() {}
+int checkGuess(char *answer, char *guess) {
+  int check = strcmp(answer, guess);
+  if (check != 0) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
 
 void startGame(char word[25]) {
   int won = 0;  // Flag to see if the user has won yet
